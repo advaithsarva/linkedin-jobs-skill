@@ -1,0 +1,27 @@
+# Copy to ./linkedin-jobs.toml or ~/.config/linkedin-jobs/config.toml (Python 3.11+, or `pip install tomli`).
+# Environment variables (LINKEDIN_JOBS_DELAY, ..._PROXY, ..._CACHE_DIR, ..._LOCATION) override this file.
+
+min_delay = 0.5            # seconds between requests (~2/s); raise it if you ever see 429s
+concurrency = 4
+default_location = ""      # used when a command gets no -l
+cache_dir = "~/.linkedin-jobs/cache"   # reuse job pages for cache_ttl_hours
+cache_ttl_hours = 24
+max_description_chars = 4000
+max_scan = 300             # cards inspected per search when filtering client-side
+
+# Never show these
+blocked_companies = ["Example Staffing Ltd"]
+blocked_title_patterns = ["(?i)unpaid", "(?i)commission only"]
+
+# Teach it your field. Canonical name -> aliases, matched case-insensitively with word boundaries.
+[extra_skills]
+"IFRS" = ["ifrs", "international financial reporting"]
+"Epic EHR" = ["epic systems", "epic ehr"]
+"AutoCAD" = ["autocad"]
+
+# How the fit score weighs things (relative; normalised internally)
+[weights]
+skills = 0.55
+title = 0.25
+seniority = 0.12
+recency = 0.08

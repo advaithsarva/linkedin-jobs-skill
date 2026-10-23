@@ -1,0 +1,15 @@
+# linkedin-jobs-skill
+
+> A job-search chief of staff for Claude Code and other coding agents. Finds LinkedIn jobs without login or API key,
+> verifies postings (ghost-job score via employer ATS boards), reveals pay, ranks by return on effort, remembers what
+> you applied to, and produces a daily brief. Works for any profession and country.
+
+## Docs
+- [README](README.md): overview, install, commands, how it works, responsible use
+- [SKILL.md](skills/linkedin-jobs/SKILL.md): the Claude Code skill (intent routing, presentation rules)
+- [AGENTS.md](AGENTS.md): using the CLI from other agents
+- [Command reference](skills/linkedin-jobs/references/commands.md)
+- [Search cheat codes](skills/linkedin-jobs/references/search-cheatcodes.md): tested LinkedIn guest-API behaviour
+- [ATS formats](skills/linkedin-jobs/references/ats-formats.md): how employers post jobs, public board APIs
+- [How hiring works](skills/linkedin-jobs/references/how-hiring-works.md)
+- [Output playbook](skills/linkedin-jobs/references/output-playbook.md)

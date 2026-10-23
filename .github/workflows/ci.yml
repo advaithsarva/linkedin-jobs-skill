@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install -r skills/linkedin-jobs/scripts/requirements.txt pytest
+      - run: python -m pytest tests -q
+
+  skill-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: SKILL.md has valid frontmatter and stays under 500 lines
+        run: |
+          python - <<'EOF'
+          import re, sys
+          t = open("skills/linkedin-jobs/SKILL.md", encoding="utf8").read()
+          m = re.match(r"---\n(.*?)\n---\n", t, re.S)
+          assert m, "missing frontmatter"
+          fm = m.group(1)
+          assert re.search(r"^name: linkedin-jobs$", fm, re.M), "name must match folder"
+          assert re.search(r"^description: .{80,}", fm, re.M), "description too short to trigger reliably"
+          assert t.count("\n") < 500, "SKILL.md must stay under 500 lines"
+          print("SKILL.md ok:", t.count("\n"), "lines")
+          EOF

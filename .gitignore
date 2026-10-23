@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+dist/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+*.db
+.linkedin-jobs/
+/linkedin-jobs.toml
+*.csv
+*.jsonl

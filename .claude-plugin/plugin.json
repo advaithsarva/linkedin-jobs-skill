@@ -1,0 +1,10 @@
+{
+  "name": "linkedin-jobs",
+  "description": "Job-search chief of staff for Claude Code: finds LinkedIn jobs without login, verifies postings (ghost-job score), reveals pay from employer ATS boards, ranks by return on effort, remembers what you applied to, and writes a daily brief.",
+  "version": "0.1.0",
+  "author": { "name": "Advaith Sarva" },
+  "homepage": "https://github.com/advaithsarva/linkedin-jobs-skill",
+  "repository": "https://github.com/advaithsarva/linkedin-jobs-skill",
+  "license": "MIT",
+  "keywords": ["jobs", "linkedin", "job-search", "resume", "ats", "internships", "career"]
+}

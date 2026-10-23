@@ -1,0 +1,11 @@
+{
+  "name": "linkedin-jobs-marketplace",
+  "owner": { "name": "Advaith Sarva" },
+  "plugins": [
+    {
+      "name": "linkedin-jobs",
+      "source": "./",
+      "description": "Job-search chief of staff: LinkedIn search without login, ghost-job checks, pay from employer ATS boards, odds ranking, memory and a daily brief."
+    }
+  ]
+}

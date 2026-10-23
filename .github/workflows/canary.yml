@@ -1,0 +1,35 @@
+name: Live canary
+
+# LinkedIn and ATS vendors change markup without notice. This weekly job hits the real endpoints and opens an
+# issue when a parser breaks, so the skill never silently rots.
+on:
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  canary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r skills/linkedin-jobs/scripts/requirements.txt pytest
+      - id: live
+        continue-on-error: true
+        run: python -m pytest tests/test_live_canary.py -m live -q
+      - name: Open an issue if the canary failed
+        if: steps.live.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create --title "Canary failed: an upstream page or API changed ($(date -u +%F))" \
+            --body "The weekly live canary failed. See the run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
+            --label bug || true
+      - if: steps.live.outcome == 'failure'
+        run: exit 1
