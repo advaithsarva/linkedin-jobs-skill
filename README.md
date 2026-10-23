@@ -1,29 +1,30 @@
 # linkedin-jobs-skill
 
-**A job-search chief of staff for Claude Code.** It finds LinkedIn jobs without a login or API key, then does the part
-search boxes don't: tells you which postings are **real**, what they **pay**, which are worth your next two hours, and
-what to do about the ones you can't land yet.
+A Claude Code skill for job hunting. It finds LinkedIn jobs without a login or API key, checks whether each posting is
+real, looks up what it pays, and ranks the results by how much a response is worth for the time an application takes.
+It also keeps a local record of what you applied to, so the next run shows only what's new.
 
-> Not another LinkedIn scraper. Search is the plumbing. The product is the **decision**.
+The search itself is the simple part, and LinkedIn already does it. What this adds is the decision about where your next
+two hours should go.
 
 [![CI](https://github.com/advaithsarva/linkedin-jobs-skill/actions/workflows/ci.yml/badge.svg)](https://github.com/advaithsarva/linkedin-jobs-skill/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Works for **any profession and country** (nurse in Berlin, accountant in Toronto, ML intern in Bengaluru).
-Requires Python 3.10+. Runs locally; your history never leaves your machine.
+It works for any profession and country (nurse in Berlin, accountant in Toronto, ML intern in Bengaluru). It needs
+Python 3.10+ and runs locally; your history stays on your machine.
 
 ## What you get
 
 | | |
 |---|---|
-| **Daily brief** | `lj brief` -> only *new* jobs since last run, verified, ranked by return on effort, plus follow-ups due and what to learn next |
-| **Truth layer** | Ghost-job score by cross-checking the employer's own ATS board (Greenhouse, Lever, Ashby, Workday, SmartRecruiters); finds the **employer's listing** and **pay** LinkedIn hides |
-| **Odds engine** | Ranks by *expected response per hour of effort* (fit x competition x ghost risk x your taste / effort), not by keyword relevance. Builds a weekly application portfolio |
-| **Search that is actually filtered** | LinkedIn's logged-out API silently ignores experience, job-type, work-mode and sort filters. This enforces them with Boolean queries + checks each posting |
-| **Search from anything** | a resume, a job description, a list of skills, structured requirements, or any pasted LinkedIn **search / job / company URL** |
-| **Company radar** | Watch target companies' own boards (often the first place a role appears). Detects hiring surges and closed roles |
-| **Memory** | Local SQLite remembers what you applied to / skipped and why, learns your taste, reminds you to follow up |
-| **Skill-gap ROI** | "Docker is the only thing missing in 6 of your matches", with a concrete proof project |
+| Daily brief | `lj brief` lists jobs that are new since your last run, checked and ranked by return on effort, with follow-ups due and what to learn next |
+| Truth layer | Cross-checks each posting against the employer's own ATS board (Greenhouse, Lever, Ashby, Workday, SmartRecruiters) to score ghost-job risk, and pulls the employer's listing and the pay that LinkedIn often hides |
+| Odds engine | Ranks by expected response per hour of effort (fit, competition, ghost risk and your taste, divided by effort) instead of keyword relevance, and builds a weekly application portfolio |
+| Real filters | LinkedIn's logged-out API silently ignores the experience, job-type, work-mode and sort filters. This applies them with Boolean queries and then checks each posting |
+| Many ways in | A resume, a job description, a skill list, structured requirements, or any pasted LinkedIn search, job or company URL |
+| Company radar | Watches target companies' own boards, which are often where a role shows up first, and flags hiring surges and closed roles |
+| Memory | A local SQLite file records what you applied to or skipped and why, learns your taste, and reminds you to follow up |
+| Skill-gap ROI | Reports which missing skill would unlock the most of your matches (for example, Docker as the only gap in six of them) and suggests a project that proves it |
 
 ## Install
 

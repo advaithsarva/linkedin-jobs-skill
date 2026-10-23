@@ -6,7 +6,7 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(uv:*) Read Write
 
 # LinkedIn jobs: your job-search chief of staff
 
-Search is the easy part. This skill answers the harder questions: **is it real, what does it pay, what are my odds, who do I contact, what should I do with the next two hours.** It works for any role and country (the skill vocabulary is tech-heavy, but a generic term extractor covers nursing, finance, trades, design and so on).
+This skill finds jobs, and it also helps the user decide: whether a posting is real, what it pays, how likely a response is, who to contact, and where the next two hours are best spent. It works for any role and country. The built-in skill vocabulary leans toward tech, and a generic term extractor covers other fields such as nursing, finance, trades and design.
 
 All data comes from public pages (LinkedIn's logged-out job endpoints and employers' public ATS JSON). Nothing needs a login. Personal state (history, watches, your profile) lives only in `~/.linkedin-jobs/` on this machine.
 
@@ -52,7 +52,7 @@ Defaults that matter: pass `-l` for every place the user would work (repeatable;
 
 ## How to present results
 
-Never paste raw tool output. Lead with the decision, then the evidence:
+Summarise rather than pasting raw tool output. Lead with the decision, then the evidence:
 
 1. **Top actions** (3 to 5): role, company, where, **why this one** (matched skills, level fit, freshness), pay if known, and the direct apply link (prefer the employer's own listing when `verify` found one).
 2. **Truth flags**: anything `likely_ghost`, expired, asks for more years or a degree the user lacks, or needs work authorization. Say plainly when something is **unverified** rather than "real".
